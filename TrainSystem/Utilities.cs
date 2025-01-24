@@ -12,11 +12,9 @@ namespace TrainSystem
         {
             if (value <= 0)
             {
-                throw new ArgumentOutOfRangeException(
-            
-             "Value must be greater than 0 (positive and non-zero).");
+               
 
-
+                return false;
 
 
             }
@@ -26,7 +24,9 @@ namespace TrainSystem
         {
             if (value % 100 != 0)
             {
-                throw new ArgumentException( " must be in increments of 100 units.");
+               
+
+                return false;
             }
 
             return true;
