@@ -21,7 +21,7 @@ namespace TrainSystem
             set {
                 if (value <= 0 )
                 {
-                    throw new ArgumentException("All weights must be a positive number and in increments of 100!");
+                    throw new ArgumentOutOfRangeException("All weights must be a positive number and in increments of 100!");
                 }
                 _HorsePower = value; }
         }
@@ -47,14 +47,14 @@ namespace TrainSystem
         }
 
 
-        public string Model
+        public  string Model
         {
             get { return _Model; }
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("The Model is required, space can not be blank!");
+                    throw new ArgumentNullException("The Model is required, space can not be blank!");
                 }
                 _Model = value.Trim();
             }
@@ -67,7 +67,7 @@ namespace TrainSystem
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("The Serial Number is required!");
+                    throw new ArgumentNullException("The Serial Number is required!");
                 }
                 _SerialNumber = value.Trim();}
         }
@@ -76,7 +76,7 @@ namespace TrainSystem
         {
             get { return _Weight; }
             set {
-                if (value <= 0 && value % 100 != 0  )
+                if (value <= 0 || value % 100 != 0  )
                 {
                     throw new ArgumentException("All weights must be a positive number and in increments of 100!");
                 }
@@ -86,10 +86,24 @@ namespace TrainSystem
 
         public Engine(string model, string serialnumber, int weight, int horsepower)
         {
-            Model = model;
-            SerialNumber = serialnumber;
+            if (string.IsNullOrWhiteSpace(model))
+                throw new ArgumentNullException("Model cannot be null or whitespace");
+
+            if (string.IsNullOrWhiteSpace(serialnumber))
+                throw new ArgumentNullException("Serial Number cannot be null or whitespace");
+
+            if (weight <= 0 || weight % 100 != 0)
+                throw new ArgumentOutOfRangeException("Weight must be a positive, non-zero number in 100-pound increments.");
+
+            if (horsepower <= 0)
+                throw new ArgumentOutOfRangeException("HorsePower must be a positive number.");
+
+
+            Model = model.Trim();
+            SerialNumber = serialnumber.Trim();
             Weight = weight;
             HorsePower = horsepower;
+            
         }
 
         public override string ToString()

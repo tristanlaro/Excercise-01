@@ -72,90 +72,90 @@ namespace UintTestingEx1
             //Then - Assert - using the FluentAssertions NuGet package
             actual.HorsePower.Should().Be(expectedEngineHorsePower);
         }
-       // #endregion
+        #endregion
 
-        //        #region Exception tests
-        //        [Theory]
-        //        [InlineData(null, "12345", 147000, 4400)]
-        //        [InlineData("", "12345", 147000, 4400)]
-        //        [InlineData("   ", "12345", 147000, 4400)]
-        //        [InlineData("CP 8002", null, 147000, 4400)]
-        //        [InlineData("CP 8002", "", 147000, 4400)]
-        //        [InlineData("CP 8002", "  ", 147000, 4400)]
-        //        public void Creating_Engine_Should_Throw_Missing_Data_Exception(string Model,
-        //         string SerialNumber, int Weight, int HorsePower)
-        //        {
-        //            //Given - Arrange
-        //            //When - Act
-        //            Action action = () => new Engine(Model, SerialNumber, Weight, HorsePower);
-        //            //Then - Assert
-        //            action.Should().Throw<ArgumentNullException>();
-        //        }
+        #region Exception tests
+        [Theory]
+        [InlineData(null, "12345", 147000, 4400)]
+        [InlineData("", "12345", 147000, 4400)]
+        [InlineData("   ", "12345", 147000, 4400)]
+        [InlineData("CP 8002", null, 147000, 4400)]
+        [InlineData("CP 8002", "", 147000, 4400)]
+        [InlineData("CP 8002", "  ", 147000, 4400)]
+        public void Creating_Engine_Should_Throw_Missing_Data_Exception(string Model,
+         string SerialNumber, int Weight, int HorsePower)
+        {
+            //Given - Arrange
+            //When - Act
+            Action action = () => new Engine(Model, SerialNumber, Weight, HorsePower);
+            //Then - Assert
+            action.Should().Throw<ArgumentNullException>();
+        }
 
-        //        [Theory]
-        //        [InlineData(0)]
-        //        [InlineData(-148000)]
-        //        [InlineData(148110)]
-        //        public void Change_OutofService_Engine_Weight_Should_Throw_Invalid_Data_Exception(int ChangeWeight)
-        //        {
-        //            //Given - Arrange
-        //            Engine actual = new Engine("CP 8002", "12345", 147000, 4400);
-        //            actual.InService = false;
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-148000)]
+        [InlineData(148110)]
+        public void Change_OutofService_Engine_Weight_Should_Throw_Invalid_Data_Exception(int ChangeWeight)
+        {
+            //Given - Arrange
+            Engine actual = new Engine("CP 8002", "12345", 147000, 4400);
+            actual.InService = false;
 
-        //            //When - Act
+            //When - Act
 
-        //            Action action = () => actual.Weight = ChangeWeight;
-        //            //Then - Assert
+            Action action = () => actual.Weight = ChangeWeight;
+            //Then - Assert
 
-        //            action.Should().Throw<ArgumentException>();
+            action.Should().Throw<ArgumentException>();
 
-        //        }
-        //        [Fact]
-        //        public void Change_InService_Engine_Weight_Should_Throw_Exception()
-        //        {
-        //            //Given - Arrange
-        //            Engine actual = new Engine("CP 8002", "12345", 147000, 4400);
-        //            int ChangeWeight = 148000;
-        //            //When - Act
+        }
+        [Fact]
+        public void Change_InService_Engine_Weight_Should_Throw_Exception()
+        {
+            //Given - Arrange
+            Engine actual = new Engine("CP 8002", "12345", 147000, 4400);
+            int ChangeWeight = 148000;
+            //When - Act
 
-        //            Action action = () => actual.Weight = ChangeWeight;
-        //            //Then - Assert
+            Action action = () => actual.Weight = ChangeWeight;
+            //Then - Assert
 
-        //            action.Should().Throw<Exception>();
+            action.Should().Throw<Exception>();
 
-        //        }
+        }
 
-        //        [Theory]
-        //        [InlineData(0)]
-        //        [InlineData(-4500)]
-        //        [InlineData(4410)]
-        //        [InlineData(2400)]
-        //        [InlineData(6400)]
-        //        public void Change_OutOfService_Engine_HorsePower_Should_Throw_Invalid_Data_Exception(int ChangeHorsePower)
-        //        {
-        //            //Given - Arrange
-        //            Engine actual = new Engine("CP 8002", "12345", 147000, 4400);
-        //            actual.InService = false;
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-4500)]
+        [InlineData(4410)]
+        [InlineData(2400)]
+        [InlineData(6400)]
+        public void Change_OutOfService_Engine_HorsePower_Should_Throw_Invalid_Data_Exception(int ChangeHorsePower)
+        {
+            //Given - Arrange
+            Engine actual = new Engine("CP 8002", "12345", 147000, 4400);
+            actual.InService = false;
 
-        //            //When - Act
+            //When - Act
 
-        //            Action action = () => actual.HorsePower = ChangeHorsePower;
-        //            //Then - Assert
-        //            action.Should().Throw<ArgumentException>();
-        //        }
-        //        [Fact]
-        //        public void Change_InService_Engine_HorsePower_Should_Throw_Exception()
-        //        {
-        //            //Given - Arrange
-        //            int ChangeHorsePower = 4500;
-        //            Engine actual = new Engine("CP 8002", "12345", 147000, 4400);
+            Action action = () => actual.HorsePower = ChangeHorsePower;
+            //Then - Assert
+            action.Should().Throw<ArgumentException>();
+        }
+        [Fact]
+        public void Change_InService_Engine_HorsePower_Should_Throw_Exception()
+        {
+            //Given - Arrange
+            int ChangeHorsePower = 4500;
+            Engine actual = new Engine("CP 8002", "12345", 147000, 4400);
 
-        //            //When - Act
+            //When - Act
 
-        //            Action action = () => actual.HorsePower = ChangeHorsePower;
-        //            //Then - Assert
-        //            action.Should().Throw<Exception>();
-        //        }
-#endregion
+            Action action = () => actual.HorsePower = ChangeHorsePower;
+            //Then - Assert
+            action.Should().Throw<Exception>();
+        }
+        #endregion
     }
 }
