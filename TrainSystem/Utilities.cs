@@ -8,7 +8,7 @@ namespace TrainSystem
 {
     public class Utilities
     {
-        public static void IsPositiveNonZero(int value)
+        public static bool IsPositiveNonZero(int value)
         {
             if (value <= 0)
             {
