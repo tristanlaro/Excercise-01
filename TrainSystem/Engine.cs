@@ -12,7 +12,8 @@ namespace TrainSystem
         private int _HorsePower;
         private string _Model;
         private string _SerialNumber;
-        private int _Weight;
+        public int _Weight;
+        private bool _InService = true;
 
         public int HorsePower
         {
@@ -26,9 +27,25 @@ namespace TrainSystem
         }
 
         public bool InService
-        { get; set; }
-                            
-        
+        {
+            get { return _InService;  }
+            set
+            {
+                if (value != true && value != false)
+                {
+                    throw new InvalidOperationException("The service state must be a valid boolean value.");
+                }
+
+                // Allow state change if it's different from the current value
+                if (_InService == value)
+                {
+                    throw new InvalidOperationException("The service state must change to a valid value.");
+                }
+
+                _InService = value;
+            }
+        }
+
 
         public string Model
         {
@@ -77,7 +94,7 @@ namespace TrainSystem
 
         public override string ToString()
         {
-            return $"{Model},{SerialNumber},{Weight},{HorsePower}";
+            return $"{Model},{SerialNumber},{Weight},{HorsePower},{InService}";
         }
 
     }

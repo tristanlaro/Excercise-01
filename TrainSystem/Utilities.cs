@@ -12,19 +12,24 @@ namespace TrainSystem
         {
             if (value <= 0)
             {
-                throw new ArgumentOutOfRangeException(" must be a positive, non-zero number.");
+                throw new ArgumentOutOfRangeException(
+            
+             "Value must be greater than 0 (positive and non-zero).");
 
 
 
 
             }
+            return true;
         }
-        public static void InHundreds(int value)
+        public static bool InHundreds(int value)
         {
             if (value % 100 != 0)
             {
                 throw new ArgumentException( " must be in increments of 100 units.");
             }
+
+            return true;
         }
     }
 }
